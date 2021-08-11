@@ -3,7 +3,7 @@ import Lottie from 'react-lottie'
 import {makeStyles} from '@material-ui/core/styles'
 import animationData from '../animations/landinganimation/data'
 import { Grid, Typography } from '@material-ui/core'
-import { Button } from '@material-ui/core'
+import { Button, useTheme } from '@material-ui/core'
 import ButtonArrow from './ui/ButtonArrow'
 
 const useStyles = makeStyles(theme=>({
@@ -11,12 +11,61 @@ const useStyles = makeStyles(theme=>({
         maxWidth: '50em', 
         minWidth: '21em', 
         marginTop: '2em', 
-        marginLeft: '10%'
+        marginLeft: '10%', 
+        [theme.breakpoints.down('sm')]:{
+            maxWidth: '30em',
+
+        }
+    }, 
+    estimateButton:{
+        ...theme.typography.estimate, 
+        backgroundColor: theme.palette.common.orange,
+        borderRadius: 50, 
+        height: 45, 
+        width: 145, 
+        marginRight: 40, 
+        '&:hover':{
+            backgroundColor: theme.palette.secondary.light
+
+        }
+    },
+    buttonContainer:{
+        marginTop: '1em'
+    }, 
+    learnButtonHero:{
+        borderColor: theme.palette.common.blue, 
+        color: theme.palette.common.blue,
+        borderWidth: 2,
+        textTransform: 'none', 
+        borderRadius: 50, 
+        fontFamily: 'Roboto', 
+        fontWeight: 'bold', 
+        fontSize: '0.9rem',
+        height: 45, 
+        width: 145
+    }, 
+    mainContainer:{
+        marginTop: "5em", 
+        [theme.breakpoints.down('md')]:{
+            marginTop: '3em'
+        },
+        [theme.breakpoints.down('xs')]:{
+            marginTop: '2em'
+        },
+    }, 
+    heroTextContainer:{
+        minWidth: '21.5em', 
+        marginLeft: '1em', 
+        [theme.breakpoints.down('xs')]:{
+            marginLeft: 0
+        }
     }
+    
 }));
 
 const LandingPage=()=>{
     const classes = useStyles();
+    const theme = useTheme();
 
     const defaultOptions={
         loop: true, 
@@ -28,20 +77,20 @@ const LandingPage=()=>{
     }
 
     return (
-        <Grid container direction='column'>
-            <Grid item>
+        <Grid container direction='column' className={classes.mainContainer}>
+            <Grid item> {/*----- Hero Block ----*/}
                 <Grid container direction='row' justifyContent='flex-end' alignItems='center'>
-                    <Grid sm item>
+                    <Grid sm item className={classes.heroTextContainer}>
                         <Typography variant='h2' align='center'>
                             Bringing West Coast Technology<br/> To the Midwest
                         </Typography>
-                        <Grid container>
+                        <Grid container justifyContent='center' className={classes.buttonContainer}>
                             <Grid item>
-                                <Button variant='contained'>Free Estimate</Button>
+                                <Button variant='contained' className={classes.estimateButton}>Free Estimate</Button>
                             </Grid>
                             <Grid item>
-                                <Button variant='outlined'>
-                                    Learn More<ButtonArrow widht={15} height={15} fill='red'></ButtonArrow>
+                                <Button variant='outlined' className={classes.learnButtonHero}>
+                                    <span style={{marginRight: 10}}>Learn More</span><ButtonArrow widht={15} height={15} fill={theme.palette.common.blue}></ButtonArrow>
                                 </Button>
                             </Grid>
                         </Grid>
@@ -50,6 +99,17 @@ const LandingPage=()=>{
                         <Lottie options={defaultOptions} height={"100%"} width={"100%"}></Lottie>
                     </Grid>
                 </Grid>
+            </Grid>
+            <Grid item> {/*----Services Block----*/}
+                <Grid container direction='row'>
+                    <Grid item>
+                        <Typography variant='h4'>
+
+                        </Typography>
+                    </Grid>
+
+                </Grid>
+
             </Grid>
         </Grid>
     )

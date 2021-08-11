@@ -115,7 +115,11 @@ const useStyles = makeStyles(theme=>({
         marginRight: "50px", 
         height: "45px", 
         color: "black", 
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.common.orange, 
+        opacity:1, 
+        '&:hover':{
+            backgroundColor: theme.palette.secondary.light
+        }
     }, 
     logoContainer:{
         padding: '0', 
