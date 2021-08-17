@@ -6,7 +6,7 @@ import Footer from "./ui/Footer";
 import LandingPage from "./LandingPage";
 import Services from "./Services";
 import CustomSoftware from "./CustomSoftware";
-
+import MobileApps from "./MobileApps";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
             <Route exact path="/" component={LandingPage}/>
             <Route exact path="/services" component={()=><Services/>}/>
             <Route exact path="/costumsoftware" component={()=><CustomSoftware/>}/>
-            <Route exact path="/mobileapps" component={()=><div>mobileapps</div>}/>
+            <Route exact path="/mobileapps" component={()=><MobileApps/>}/>
             <Route exact path="/websites" component={()=><div>websites</div>}/>
             <Route exact path="/revolution" component={()=><div>revolution</div>}/>
             <Route exact path="/about" component={()=><div>about</div>}/>
