@@ -4,6 +4,8 @@ import Header from "./ui/Header";
 import theme from "./ui/Theme";
 import Footer from "./ui/Footer";
 import LandingPage from "./LandingPage";
+import Services from "./Services";
+import CustomSoftware from "./CustomSoftware";
 
 
 function App() {
@@ -14,8 +16,8 @@ function App() {
           <Header/>
           <Switch>
             <Route exact path="/" component={LandingPage}/>
-            <Route exact path="/services" component={()=><div>services</div>}/>
-            <Route exact path="/costumsoftware" component={()=><div>costumsoftware</div>}/>
+            <Route exact path="/services" component={()=><Services/>}/>
+            <Route exact path="/costumsoftware" component={()=><CustomSoftware/>}/>
             <Route exact path="/mobileapps" component={()=><div>mobileapps</div>}/>
             <Route exact path="/websites" component={()=><div>websites</div>}/>
             <Route exact path="/revolution" component={()=><div>revolution</div>}/>

@@ -217,12 +217,12 @@ const Header=()=>{
         {name: 'The Revolution', route: '/revolution'},
         {name: 'About Us', route: '/about'},
         {name: 'Contact Us', route: '/contact'}, 
-        {name: 'Estimate', route: '/estimate'}
+        {name: 'Free Estimate', route: '/estimate'}
     ];
     const servicesOptions = [
         {name: 'Overview', route: '/services'},
         {name: 'Costum Software', route: '/costumsoftware'},
-        {name: 'Mobile Apps', route: '/mobileapps'},
+        {name: 'iOS/Android App development', route: '/mobileapps'},
         {name: 'Websites', route: '/websites'},
     ]
 
@@ -232,7 +232,7 @@ const Header=()=>{
                 {options.map(option=>(
                 <Tab
                     key={option.route}
-                    classes={option.name === 'Estimate' ? {root:classes.button}: {root: classes.tab}}
+                    classes={option.name === 'Free Estimate' ? {root:classes.button}: {root: classes.tab}}
                     component={Link} 
                     to={option.route}
                     label={option.name}

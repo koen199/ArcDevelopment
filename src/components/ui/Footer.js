@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme=>({
     }, 
     iconsContainer:{
         position: 'absolute',
-        right:'0px',
+        right:'20px',
         height: '100%', 
         width: '18em', 
 
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme=>({
         justifyContent: 'flex-end', 
         alignItems: 'center', 
         height: '100%', 
-        paddingRight: '3rem', 
+        paddingRight: '03rem', 
         zIndex:0
     },
     icon:{       
@@ -82,7 +82,7 @@ export default function Footer(){
                     <Grid className={classes.gridItem}>
                         <Grid container direction='column' spacing={2}>
                             <Grid item className={classes.link} component={Link} to='/costumsoftware'>Costum Software Development</Grid>
-                            <Grid item className={classes.link} component={Link} to='/mobileapps'>Mobile App Development</Grid>     
+                            <Grid item className={classes.link} component={Link} to='/mobileapps'>iOS/Android App development</Grid>     
                             <Grid item className={classes.link} component={Link} to='/websites'>Website Development</Grid>     
                         </Grid>
                     </Grid>
