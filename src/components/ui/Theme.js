@@ -78,10 +78,15 @@ const theme = createTheme({
         MuiInputLabel:{
             root:{
                 color: arcBlue, 
-                fontSize: '1rem'
+                fontSize: '1rem', 
+                fontWeight: 300
             }
         },
         MuiInput:{
+            root:{
+                color: arcBlue, 
+                fontSize: '1rem'
+            },
             underline:{
                 '&:before':{
                     borderBottom: `2px solid ${arcBlue}`

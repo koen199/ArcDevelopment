@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core';
 import { Grid, Typography, Button, TextField, useMediaQuery } from '@material-ui/core';
 import background from '../assets/background.jpg'
+import mobileBackground from '../assets/mobileBackground.jpg'
 import phoneIcon from '../assets/phone.svg'
 import emailIcon from '../assets/email.svg'
 import airplane from '../assets/send.svg'
@@ -16,6 +17,9 @@ const useStyles = makeStyles(theme=>({
         backgroundSize: 'cover', 
         backgroundRepeat: 'no-repeat', 
         height: '60em', 
+        [theme.breakpoints.down('md')]:{
+            backgroundImage: `url(${mobileBackground})`, 
+        }
     }, 
     estimateButton:{
         ...theme.typography.estimate, 
@@ -27,6 +31,10 @@ const useStyles = makeStyles(theme=>({
         '&:hover':{
             backgroundColor: theme.palette.secondary.light
 
+        },
+        [theme.breakpoints.down('md')]:{
+            marginLeft:0,
+            marginRight: 0
         }
     }, 
     learnButton:{
@@ -34,7 +42,7 @@ const useStyles = makeStyles(theme=>({
         fontSize: '0.7rem', 
         height: 35, 
         padding: 5, 
-        [theme.breakpoints.down('xs')]:{
+        [theme.breakpoints.down('md')]:{
             marginTop: '2em',
             marginBottom: '2em'
         }
@@ -61,11 +69,43 @@ const Contact=()=>{
     const classes = useStyles();
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+    const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
+
+    const onChange = event => {
+        let valid;
+        switch(event.target.id){
+            case 'email':
+                setEmail(event.target.value);
+                valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value);
+                if(!valid){
+                    setEmailHelper('Invalid email');
+                }
+                else{
+                    setEmailHelper('');
+                }
+                break;
+            case 'phone':
+                setPhone(event.target.value);
+                /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(event.target.value);
+                if(!valid){
+                    setPhoneHelper('Invalid phone number');
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 
 
     const [name, setName] = useState('');
+
     const [email, setEmail] = useState('');
+    const [emailHelper, setEmailHelper] = useState('');
+
     const [phone, setPhone] = useState('');
+    const [phoneHelper, setPhoneHelper] = useState('');
+
     const [message, setMessage] = useState('');
 
     return(
@@ -96,10 +136,17 @@ const Contact=()=>{
                         <TextField fullWidth label='Name' id='name' value={name} onChange={(event)=>setName(event.target.value)}/>
                     </Grid>
                     <Grid item>
-                        <TextField label='Email' id='name' value={email} onChange={(event)=>setEmail(event.target.value)}/>
+                        <TextField
+                            label='Email'
+                            id='email'
+                            value={email}
+                            onChange={onChange}
+                            error={emailHelper}
+                            helperText={emailHelper}
+                        />
                     </Grid>
                     <Grid item>
-                        <TextField label='Phone' id='name' value={phone} onChange={(event)=>setPhone(event.target.value)}/>
+                        <TextField label='Phone' id='phone' value={phone} onChange={onChange}/>
                     </Grid>
                 </Grid>
                 <Grid item style={{maxWidth:'20em'}}>
@@ -113,22 +160,23 @@ const Contact=()=>{
                         InputProps={{disableUnderline:true}}  
                     />
                 </Grid>
-                <Grid item style={{marginTop:'2em'}}>
+                <Grid item style={{marginTop:'2em', marginBottom: '2em'}}>
                     <Button variant='contained' className={classes.sendButton}>
                         Send Message
                         <img src={airplane} alt='paper airplane' style={{marginLeft: '1em', fill:'red'}}/>
                     </Button>
-                    
                 </Grid>
             </Grid>
-            <Grid item container className={classes.background} lg={8} xl={9} alignItems='center'>
-                <Grid item style={{ paddingLeft: matchesSM ? '0em': '2.5em', minWidth:"23em"} }>
-                    <Typography variant='h4'>Simple Software.</Typography>
-                    <Typography variant='h4'>Revolutionary Results</Typography>
-                    <Typography variant='subtitle1'> Take advantage of the 21st Century</Typography>
-                    <Button variant='outlined' className={classes.learnButton} component={Link} to="/estimate">
-                        <span style={{marginRight: 10}}>Learn More</span><ButtonArrow widht={15} height={15} fill={theme.palette.common.blue}></ButtonArrow>
-                    </Button>
+            <Grid item container className={classes.background} lg={8} xl={9} alignItems='center' justifyContent={matchesMD?'center':undefined} direction={matchesMD? 'column':'row'}>
+                <Grid item style={{ paddingLeft: matchesSM ? '0em': '2.5em', minWidth:"23em"}}>
+                    <Typography align={matchesMD? 'center':undefined} variant='h4'>Simple Software.</Typography>
+                    <Typography align={matchesMD? 'center': undefined} variant='h4'>Revolutionary Results</Typography>
+                    <Typography align={matchesMD? 'center':undefined} variant='subtitle1'> Take advantage of the 21st Century</Typography>
+                    <Grid item container justifyContent={matchesMD?'center': undefined}>  
+                        <Button variant='outlined' className={classes.learnButton} component={Link} to="/estimate">
+                            <span style={{marginRight: 10}}>Learn More</span><ButtonArrow widht={15} height={15} fill={theme.palette.common.blue}></ButtonArrow>
+                        </Button>
+                    </Grid> 
                 </Grid>
                 <Grid item>
                     <Button variant='contained' className={classes.estimateButton} component={Link} to="/estimate">Free Estimate</Button>                
