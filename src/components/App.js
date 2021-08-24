@@ -7,6 +7,8 @@ import LandingPage from "./LandingPage";
 import Services from "./Services";
 import CustomSoftware from "./CustomSoftware";
 import MobileApps from "./MobileApps";
+import Websites from "./Websites";
+import Contact from "./Contact";
 
 function App() {
   return (
@@ -19,10 +21,10 @@ function App() {
             <Route exact path="/services" component={()=><Services/>}/>
             <Route exact path="/costumsoftware" component={()=><CustomSoftware/>}/>
             <Route exact path="/mobileapps" component={()=><MobileApps/>}/>
-            <Route exact path="/websites" component={()=><div>websites</div>}/>
+            <Route exact path="/websites" component={()=><Websites/>}/>
             <Route exact path="/revolution" component={()=><div>revolution</div>}/>
             <Route exact path="/about" component={()=><div>about</div>}/>
-            <Route exact path="/contact" component={()=><div>contact</div>}/>
+            <Route exact path="/contact" component={()=><Contact/>}/>
             <Route exact path="/estimate" component={()=><div>estimate</div>}/>
           </Switch>
           <Footer/>
